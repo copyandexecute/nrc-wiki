@@ -1,7 +1,7 @@
 <!--meta
 id: crash-<slug>
 type: crash
-title: <kurzer Crash-Titel>
+title: <einfacher Titel, was abstürzt — kein Java-Kauderwelsch>
 mc: [<version>]
 loader: [<fabric|forge|neoforge|quilt>]
 mod: <mod-slug oder weglassen>
@@ -10,18 +10,29 @@ signatures:
   - <eindeutiger Substring aus dem Log>
   - <noch ein Substring>
 severity: crash
-solution_summary: <ein Satz: was behebt es>
+solution_summary: <EIN simpler Satz — landet automatisch im Lösungs-Banner oben>
 -->
 
-## Symptom
+<!-- Der ✅-Lösungs-Banner oben wird automatisch aus solution_summary gebaut.
+     Hier drunter: super einfache Schritte. Ein 8-Jähriger muss es raffen. -->
 
-<Was sieht der User? Wann crasht es, welche Meldung?>
+## 🛠️ So reparierst du es
 
-## Ursache
-
-<Warum passiert das?>
-
-## Lösung
-
-1. <Schritt>
+1. <Schritt in einfachen Worten>
 2. <Schritt>
+3. Spiel neu starten. ✅
+
+<details>
+<summary>❓ Warum ist das passiert?</summary>
+
+<Kurze, einfache Erklärung. Optional — niemand MUSS das lesen.>
+
+</details>
+
+<details>
+<summary>📄 Log-Details (für Nerds)</summary>
+
+```
+<relevanter Kern aus dem Log>
+```
+</details>

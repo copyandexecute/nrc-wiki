@@ -155,11 +155,20 @@ function renderPage(e) {
   const rest = metaMatch ? body.slice(metaMatch.index + metaBlock.length).trimStart() : body.trimStart()
   const hasH1 = /^#\s/.test(rest)
 
+  // Crash pages lead with a big, kid-proof fix banner (auto from solution_summary).
+  const fix =
+    e.category === 'crash' && e.meta.solution_summary
+      ? `> ## ✅ Lösung\n> **${e.meta.solution_summary}**\n`
+      : ''
+
   return [
     metaBlock,
     breadcrumb,
     '',
-    hasH1 ? rest : `# ${title}\n\n${rest}`,
+    hasH1 ? '' : `# ${title}`,
+    '',
+    fix,
+    rest,
     footer,
     '',
   ].join('\n')
