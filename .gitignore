@@ -1,0 +1,6 @@
+# generated artefacts (built by scripts/build-wiki.mjs)
+/wiki/
+/index.json
+
+node_modules/
+.DS_Store
