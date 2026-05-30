@@ -11,6 +11,7 @@ signatures:
   - sodiumdynamiclights
   - method_18097
   - net.minecraft.class_310
+  - onUpdateLevelInEngines
 severity: crash
 solution_summary: Mod entfernen oder auf eine 1.21.11-kompatible Version updaten.
 -->
@@ -19,12 +20,25 @@ solution_summary: Mod entfernen oder auf eine 1.21.11-kompatible Version updaten
 
 Der Client crasht direkt beim Start. Im Log steht eine `InvalidInjectionException`,
 die `sodiumdynamiclights` und einen Mixin auf `method_18097` in
-`net.minecraft.class_310` nennt:
+`net.minecraft.class_310` nennt.
+
+<details>
+<summary>Kern aus dem Log</summary>
 
 ```
-org.spongepowered.asm.mixin.injection.throwables.InvalidInjectionException:
-  ... sodiumdynamiclights ... method_18097 ... net.minecraft.class_310
+[Render thread/ERROR]: Mixin apply for mod sodiumdynamiclights failed
+mixins.sodiumdynamiclights.json:MinecraftClientMixin from mod sodiumdynamiclights
+
+InvalidInjectionException: Critical injection failure: @Inject annotation on
+onUpdateLevelInEngines could not find any targets matching
+'Lnet/minecraft/class_310;method_18097(Lnet/minecraft/class_638;)V'
+in net/minecraft/class_310. Using refmap
+sodiumdynamiclights-fabric-1.21.5-fabric-refmap.json
+
+Caused by: java.lang.RuntimeException: Mixin transformation of
+net.minecraft.class_310 failed
 ```
+</details>
 
 ## Ursache
 
