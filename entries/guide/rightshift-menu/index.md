@@ -12,7 +12,7 @@ solution_summary: Mit der RightShift-Taste (rechts, unter Enter) öffnest du das
 Drücke die **RightShift-Taste** — das ist die **rechte Shift-Taste**, direkt
 **unter der Enter-Taste**. Damit öffnet sich das NoRiskClient-V3-Menü.
 
-![Demo](demo.gif)
+![RightShift-Taste — rechts unter Enter](right-shift-key.webp)
 
 ### Tipps
 
