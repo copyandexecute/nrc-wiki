@@ -155,11 +155,18 @@ function renderPage(e) {
   const rest = metaMatch ? body.slice(metaMatch.index + metaBlock.length).trimStart() : body.trimStart()
   const hasH1 = /^#\s/.test(rest)
 
-  // Crash pages lead with a big, kid-proof fix banner (auto from solution_summary).
-  const fix =
-    e.category === 'crash' && e.meta.solution_summary
-      ? `> ## ✅ Lösung\n> **${e.meta.solution_summary}**\n`
-      : ''
+  // Crash pages lead with a big, kid-proof banner. Solved → green fix; known/
+  // in-progress → "we're on it" + optional workaround. Auto from meta.
+  let fix = ''
+  if (e.category === 'crash') {
+    const status = e.meta.status || 'solved'
+    if (status === 'investigating' || status === 'known') {
+      fix = `> ## 🔧 Bekanntes Problem — wir arbeiten an einem Fix\n> **${e.meta.solution_summary || 'Wir kennen den Bug. Du musst nichts tun.'}**\n`
+      if (e.meta.workaround) fix += `>\n> 🩹 **Solange als Workaround:** ${e.meta.workaround}\n`
+    } else if (e.meta.solution_summary) {
+      fix = `> ## ✅ Lösung\n> **${e.meta.solution_summary}**\n`
+    }
+  }
 
   return [
     metaBlock,
@@ -184,10 +191,11 @@ function renderIndex(cat, items) {
   }
   const fmtArr = (v) => (Array.isArray(v) ? v.join(', ') : v || '–')
   if (cat === 'crash') {
-    lines.push('| Problem | MC | Loader | Lösung |', '|---|---|---|---|')
+    lines.push('| Status | Problem | MC | Loader | Lösung / Hinweis |', '|---|---|---|---|---|')
     for (const e of items) {
+      const st = (e.meta.status || 'solved') === 'solved' ? '✅' : '🔧'
       lines.push(
-        `| [${e.meta.title || e.slug}](${e.page}) | ${fmtArr(e.meta.mc)} | ${fmtArr(e.meta.loader)} | ${e.meta.solution_summary || '–'} |`,
+        `| ${st} | [${e.meta.title || e.slug}](${e.page}) | ${fmtArr(e.meta.mc)} | ${fmtArr(e.meta.loader)} | ${e.meta.solution_summary || '–'} |`,
       )
     }
   } else {
@@ -281,6 +289,7 @@ function build() {
     loader: e.meta.loader ?? [],
     mod: e.meta.mod ?? null,
     tags: e.meta.tags ?? [],
+    status: e.meta.status ?? 'solved',
     severity: e.meta.severity ?? null,
     keywords: e.meta.keywords ?? [],
     signatures: e.meta.signatures ?? [],

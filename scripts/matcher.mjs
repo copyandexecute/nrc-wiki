@@ -32,7 +32,10 @@ export function matchCrash(logText, index) {
     const matched = sigs.filter((s) => log.includes(String(s).toLowerCase()))
     if (!matched.length) continue
     const score = matched.length / sigs.length
-    if (matched.length >= 2 || score >= 0.6) hits.push({ entry: e, score, matched })
+    // require a real share of an entry's signatures, not just 2 generic tokens
+    // (e.g. "InvalidInjectionException" + "net.minecraft.class_310" appear in many
+    // unrelated mixin crashes). Single-signature entries still match on that one.
+    if (score >= 0.6) hits.push({ entry: e, score, matched })
   }
   return hits.sort((a, b) => b.matched.length - a.matched.length || b.score - a.score)
 }
