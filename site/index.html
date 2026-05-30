@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NRC Crash-Checker</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: flex-start;
+    justify-content: center; padding: 10vh 20px;
+    background: #0e0f13; color: #e7e7ea;
+    font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+  main { width: 100%; max-width: 640px; }
+  h1 { font-size: 1.5rem; margin: 0 0 .25rem; }
+  p.sub { margin: 0 0 1.5rem; color: #9aa0aa; }
+  form { display: flex; gap: .5rem; }
+  input {
+    flex: 1; padding: .7rem .9rem; border-radius: 10px; border: 1px solid #2a2d36;
+    background: #16181f; color: inherit; font-size: 1rem;
+  }
+  input:focus { outline: none; border-color: #5b8cff; }
+  button {
+    padding: .7rem 1.1rem; border: 0; border-radius: 10px; cursor: pointer;
+    background: #5b8cff; color: #fff; font-weight: 600; font-size: 1rem;
+  }
+  button:disabled { opacity: .5; cursor: default; }
+  #out { margin-top: 1.5rem; }
+  .card {
+    border: 1px solid #2a2d36; border-radius: 12px; padding: 1rem 1.1rem;
+    background: #16181f; margin-bottom: .75rem;
+  }
+  .card h2 { font-size: 1.05rem; margin: 0 0 .35rem; }
+  .card a { color: #8fb0ff; text-decoration: none; }
+  .card a:hover { text-decoration: underline; }
+  .sol { color: #cfd3da; margin: .35rem 0 .5rem; }
+  .meta { color: #6f7682; font-size: .82rem; word-break: break-word; }
+  .none { color: #9aa0aa; }
+  .err { color: #ff7b72; }
+</style>
+</head>
+<body>
+<main>
+  <h1>🛟 NRC Crash-Checker</h1>
+  <p class="sub">mclo.gs-Link einfügen — checkt ob der Crash bekannt ist.</p>
+  <form id="f">
+    <input id="url" type="text" inputmode="url" autocomplete="off"
+           placeholder="https://mclo.gs/XXXXXXX" />
+    <button id="go">Prüfen</button>
+  </form>
+  <div id="out"></div>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
