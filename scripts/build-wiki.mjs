@@ -294,6 +294,8 @@ function build() {
     keywords: e.meta.keywords ?? [],
     signatures: e.meta.signatures ?? [],
     solution_summary: e.meta.solution_summary ?? '',
+    workaround: e.meta.workaround ?? null,
+    actions: Array.isArray(e.meta.actions) ? e.meta.actions : e.meta.actions ? [e.meta.actions] : [],
   }))
   fs.writeFileSync(INDEX_JSON, JSON.stringify(index, null, 2) + '\n', 'utf8')
 
